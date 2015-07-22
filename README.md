@@ -40,9 +40,9 @@ mongoose.connection.once('open', function () {
 ```
 
 ## Writing a file
-You can write from a `String` pointing to a file in a path, a `Stream.Readable` object created from the `fs` module or a `Buffer`.
+You can write from a path `String` pointing to a file, a `Stream.Readable` object created from the `fs` module or a `Buffer`.
 
-You can define your source as a `String`:
+So, you can define your source as a `String`:
 ```js
 var source = '/path/to/the/file.ext';
 ```
@@ -59,7 +59,7 @@ var source = new Buffer('important buffer data here');
 
 And then save it to GridFS with:
 ```js
-figrid.write(source, function (err, fsfile) {
+grid.write(source, function (err, fsfile) {
   if (err) {
     throw err;
   }
@@ -88,7 +88,7 @@ A common _fsfile_ `Object` should look like this:
 ## Reading a file
 To read a file you must provide a `String` than can be either a valid `ObjectId` or a file name.
 
-You can define your file as an `ObjectId`:
+So, you can define your file as an `ObjectId`:
 ```js
 var file = '55a52e49a562f0bb2627f38e';
 ```
@@ -100,7 +100,7 @@ var file = 'secret_document.docx';
 
 And then get access to the file with:
 ```js
-figrid.read(file, function (err, fsfile, rs) {
+grid.read(file, function (err, fsfile, rs) {
   if (err) {
     throw err;
   }
@@ -114,7 +114,7 @@ The `rs` parameter is a `Stream.Readable` object that can be piped, written or a
 ## Removing a file
 To remove a file you must provide a `String` than can be either a valid `ObjectId` or a file name.
 
-You can remove the file via it's `ObjectId`:
+So, you can remove the file via it's `ObjectId`:
 ```js
 var file = '55a52e49a562f0bb2627f38e';
 ```
@@ -126,7 +126,7 @@ var file = 'secret_document.docx';
 
 And then remove the file with:
 ```js
-figrid.remove(file, function (err) {
+grid.remove(file, function (err) {
   if (err) {
     throw err;
   }
