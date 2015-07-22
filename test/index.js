@@ -263,7 +263,7 @@ describe('FiGrid', function () {
     it('should remove a file from GridFS by its file name', function (done) {
       var filename = path.basename(files.text);
 
-      figrid.remove(filename, function (err, fsfile, read) {
+      figrid.remove(filename, function (err) {
         if (err) {
           return done(err);
         }

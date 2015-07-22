@@ -1,68 +1,136 @@
 # fi-seed-component-gridfs
 Fi Seed's GridFS component
 
-## Usage
+This compontent uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/gridfs-stream) module to stream data into GridFS.
 
+## Usage
 ### Use on fi-seed
 
 ```js
-var auth = component('gridfs');
+var grid = component('gridfs');
 ```
 
 ### Use on Express app
 
 ```js
-var auth = require('fi-seed-component-gridfs');
+var grid = require('fi-seed-component-gridfs');
 ```
 
 ### Initialization
-You must call it with your Express's app instance, to attach the routes, and a configuration object:
+You must initialize it with your current mongo instance and db connection before using it:
 
 ```js
-auth(app, config);
+grid.init(db, mongo);
 ```
 
-### Configuration
-The configuration object must have an authorizer function and a route array. The `debug` parameter is optional but recommended.
+If you're using mongoose, just pass mongoose's `connection.db` and `mongoose.mongo`:
 
-**IMPORTANT:** All routes are allowed by default!
+```js
+var mongoose = require('mongoose');
 
-- **debug**:
-  - This option can be a `String` to use the [debug](https://github.com/visionmedia/debug) module or `true` to use `console.log`.
+mongoose.connect('mongodb://localhost/your-db-name', options);
 
-- **authorizer**:
-  - This is required and must be a `function`. This function is run on each request and should return the value that will be evaluated against the `allows` parameter value inside each route definition. The authorizer value will be attached to `req.session.authorized`.
+mongoose.connection.on('error', function (err) {
+  throw err;
+});
 
-- **routes**:
-  - An `Array` with the routes to authorize:
-    - **method**: A `String` or an `Array` of HTTP request methods to filter. If no method is specified it defaults to 'ALL';
-    - **route**: A `String` or an `Array` of strings to filter.
-    - **allows**: A `String` or an `Array` of authorization values to filter:
+mongoose.connection.once('open', function () {
+  grid.init(mongoose.connection.db, mongoose.mongo);
+});
+```
+
+## Writing a file
+You can write from a `String` pointing to a file in a path, a `Stream.Readable` object created from the `fs` module or a `Buffer`.
+
+You can define your source as a `String`:
+```js
+var source = '/path/to/the/file.ext';
+```
+
+As a `Stream.Readable`:
+```js
+var source = fs.createReadStream('/path/to/the/file.ext');
+```
+
+Or as a `Buffer`:
+```js
+var source = new Buffer('important buffer data here');
+```
+
+And then save it to GridFS with:
+```js
+figrid.write(source, function (err, fsfile) {
+  if (err) {
+    throw err;
+  }
+
+  /* Do whatever you want with your fsfile */
+  console.log("The file %s named %d has a length of %d", fsfile._id, fsfile.filename, fsfile.length);
+});
+```
+
+A common _fsfile_ `Object` should look like this:
 
 ```js
 {
-  debug: 'app:auth',
-
-  authorizer: function (req) {
-    if (req.session.user) {
-      return req.session.user.admin && 'admin' || 'user';
-    }
-
-    return false;
-  },
-
-  routes: [{
-    method: 'GET',
-    route: '/api/users',
-    allows: 'admin'
-  }, {
-    method: ['POST', 'PUT', 'DELETE'],
-    route: ['/api/users', '/api/stuff'],
-    allows: 'admin'
-  }, {
-    method: ['POST', 'PUT', 'DELETE'],
-    route: '/api/content',
-    allows: ['user', 'admin']
-  }]
+  _id: ObjectId,
+  filename: String,
+  contentType: String,
+  length: Number,
+  chunkSize: Number,
+  uploadDate: Date,
+  aliases: Object,
+  metadata: Object,
+  md5: String
 }
+```
+
+## Reading a file
+To read a file you must provide a `String` than can be either a valid `ObjectId` or a file name.
+
+You can define your file as an `ObjectId`:
+```js
+var file = '55a52e49a562f0bb2627f38e';
+```
+
+Or as a file name:
+```js
+var file = 'secret_document.docx';
+```
+
+And then get access to the file with:
+```js
+figrid.read(file, function (err, fsfile, rs) {
+  if (err) {
+    throw err;
+  }
+
+  /* Now you have your fsfile object and a nice read stream */
+});
+```
+
+The `rs` parameter is a `Stream.Readable` object that can be piped, written or anything that `Stream.Readable`'s can do.
+
+## Removing a file
+To remove a file you must provide a `String` than can be either a valid `ObjectId` or a file name.
+
+You can remove the file via it's `ObjectId`:
+```js
+var file = '55a52e49a562f0bb2627f38e';
+```
+
+Or it's file name:
+```js
+var file = 'secret_document.docx';
+```
+
+And then remove the file with:
+```js
+figrid.remove(file, function (err) {
+  if (err) {
+    throw err;
+  }
+
+  /* If no error, file has been removed */
+});
 ```
