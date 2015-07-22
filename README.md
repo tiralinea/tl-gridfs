@@ -7,20 +7,20 @@ This compontent uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckma
 ### Use on fi-seed
 
 ```js
-var grid = component('gridfs');
+var gridfs = component('gridfs');
 ```
 
 ### Use on Express app
 
 ```js
-var grid = require('fi-seed-component-gridfs');
+var gridfs = require('fi-seed-component-gridfs');
 ```
 
 ### Initialization
 You must initialize it with your current mongo instance and db connection before using it:
 
 ```js
-grid.init(db, mongo);
+gridfs.init(db, mongo);
 ```
 
 If you're using mongoose, just pass mongoose's `connection.db` and `mongoose.mongo`:
@@ -35,7 +35,7 @@ mongoose.connection.on('error', function (err) {
 });
 
 mongoose.connection.once('open', function () {
-  grid.init(mongoose.connection.db, mongoose.mongo);
+  gridfs.init(mongoose.connection.db, mongoose.mongo);
 });
 ```
 
@@ -59,7 +59,7 @@ var source = new Buffer('important buffer data here');
 
 And then save it to GridFS with:
 ```js
-grid.write(source, function (err, fsfile) {
+gridfs.write(source, function (err, fsfile) {
   if (err) {
     throw err;
   }
@@ -100,7 +100,7 @@ var file = 'secret_document.docx';
 
 And then get access to the file with:
 ```js
-grid.read(file, function (err, fsfile, rs) {
+gridfs.read(file, function (err, fsfile, rs) {
   if (err) {
     throw err;
   }
@@ -126,7 +126,7 @@ var file = 'secret_document.docx';
 
 And then remove the file with:
 ```js
-grid.remove(file, function (err) {
+gridfs.remove(file, function (err) {
   if (err) {
     throw err;
   }
