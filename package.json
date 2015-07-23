@@ -1,6 +1,6 @@
 {
   "name": "fi-seed-component-gridfs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fi Seed's GridFS component",
   "main": "index.js",
   "scripts": {
