@@ -35,8 +35,6 @@ function rint(min, max) {
 }
 
 describe('FiGrid', function () {
-  var id;
-
   before(function (done) {
     var url = 'mongodb://localhost:27017/fi-grid-tests';
 
@@ -52,7 +50,7 @@ describe('FiGrid', function () {
   });
 
   describe('object', function () {
-    it('should be and object', function () {
+    it('should be an object', function () {
       expect(figrid).to.be.an.instanceof(Object);
     });
 
