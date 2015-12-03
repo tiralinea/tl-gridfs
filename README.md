@@ -1,4 +1,4 @@
-# fi-seed-component-gridfs
+# Fi GridFS
 Convenience layer for Mongo's GridFS on Node.js applications
 
 This module uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/gridfs-stream) module to stream data into GridFS.
