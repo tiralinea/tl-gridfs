@@ -1,7 +1,7 @@
 {
   "name": "fi-gridfs",
   "title": "Fi GridFS",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Convenience layer for Mongo's GridFS on Node.js applications",
   "main": "index.js",
   "scripts": {
