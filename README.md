@@ -1,29 +1,27 @@
 # fi-seed-component-gridfs
-Fi Seed's GridFS component
+Convenience layer for Mongo's GridFS on Node.js applications
 
-This compontent uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/gridfs-stream) module to stream data into GridFS.
+This module uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/gridfs-stream) module to stream data into GridFS.
 
-## Usage
-### Use on fi-seed
+## Installing
 
-```js
-var gridfs = component('gridfs');
+```sh
+npm install --save fi-gridfs
 ```
 
-### Use on Express app
-
+## Usage
 ```js
 var gridfs = require('fi-seed-component-gridfs');
 ```
 
 ### Initialization
-You must initialize it with your current mongo instance and db connection before using it:
+You must initialize it with your current Mongo instance and db connection before using it:
 
 ```js
 gridfs.init(db, mongo);
 ```
 
-If you're using mongoose, just pass mongoose's `connection.db` and `mongoose.mongo`:
+If you're using mongoose, just pass `mongoose.connection.db` and `mongoose.mongo`:
 
 ```js
 var mongoose = require('mongoose');
@@ -42,7 +40,7 @@ mongoose.connection.once('open', function () {
 ## Writing a file
 You can write from a path `String` pointing to a file, a `Stream.Readable` object created from the `fs` module or a `Buffer`.
 
-So, you can define your source as a `String`:
+You can define your source as a `String`:
 ```js
 var source = '/path/to/the/file.ext';
 ```
@@ -69,7 +67,7 @@ gridfs.write(source, function (err, fsfile) {
 });
 ```
 
-A common _fsfile_ `Object` should look like this:
+A common *fsfile* `Object` should look like this:
 
 ```js
 {
@@ -114,7 +112,7 @@ The `rs` parameter is a `Stream.Readable` object that can be piped, written or a
 ## Removing a file
 To remove a file you must provide a `String` than can be either a valid `ObjectId` or a file name.
 
-So, you can remove the file via it's `ObjectId`:
+You can remove the file via it's `ObjectId`:
 ```js
 var file = '55a52e49a562f0bb2627f38e';
 ```
@@ -131,6 +129,6 @@ gridfs.remove(file, function (err) {
     throw err;
   }
 
-  /* If no error, file has been removed */
+  /* File has been removed */
 });
 ```
