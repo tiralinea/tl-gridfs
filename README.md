@@ -11,7 +11,7 @@ npm install --save fi-gridfs
 
 ## Usage
 ```js
-var gridfs = require('fi-seed-component-gridfs');
+var gridfs = require('fi-gridfs');
 ```
 
 ### Initialization
