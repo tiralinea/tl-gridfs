@@ -1,14 +1,14 @@
 {
-  "name": "fi-seed-component-gridfs",
+  "name": "fi-gridfs",
   "version": "1.0.3",
-  "description": "Fi Seed's GridFS component",
+  "description": "Convenience layer for Mongo's GridFS on Node.js applications",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --reporter list test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/finaldevstudio/fi-seed-component-gridfs.git"
+    "url": "git+https://github.com/finaldevstudio/fi-gridfs.git"
   },
   "keywords": [
     "mongoose",
@@ -20,9 +20,9 @@
   "author": "Santiago G. Marín <santiago@finaldevstudio.com> (http://finaldevstudio.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/finaldevstudio/fi-seed-component-gridfs/issues"
+    "url": "https://github.com/finaldevstudio/fi-gridfs/issues"
   },
-  "homepage": "https://github.com/finaldevstudio/fi-seed-component-gridfs#readme",
+  "homepage": "https://github.com/finaldevstudio/fi-gridfs#readme",
   "dependencies": {
     "gridfs-stream": "^1.1.1",
     "type-of-is": "^3.4.0"
