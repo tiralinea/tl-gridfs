@@ -1,3 +1,7 @@
+---
+### No longer maintained.
+---
+
 # Fi GridFS
 Convenience layer for Mongo's GridFS on Node.js applications
 
