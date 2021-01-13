@@ -1,7 +1,7 @@
 {
-  "name": "fi-gridfs",
-  "title": "Fi GridFS",
-  "version": "1.1.1",
+  "name": "tl-gridfs",
+  "title": "Tl GridFS",
+  "version": "1.0",
   "description": "Convenience layer for Mongo's GridFS on Node.js applications",
   "main": "index.js",
   "scripts": {
@@ -9,21 +9,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/finaldevstudio/fi-gridfs.git"
+    "url": "git+https://github.com/tiralinea/tl-gridfs.git"
   },
   "keywords": [
     "mongoose",
-    "fi-seed",
     "mongodb",
     "gridfs",
     "mongo"
   ],
   "author": "Santiago G. Marín <santiago@finaldevstudio.com> (http://finaldevstudio.com)",
+  "contributors": [
+    "Leonardo Ramos <leonardo@tiralinea.com> (http://tiralinea.com)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/finaldevstudio/fi-gridfs/issues"
+    "url": "https://github.com/tiralinea/tl-gridfs/issues"
   },
-  "homepage": "https://github.com/finaldevstudio/fi-gridfs#readme",
+  "homepage": "https://github.com/tiralinea/tl-gridfs#readme",
   "dependencies": {
     "fi-is": "^1.1.1",
     "gridfs-stream": "^1.1.1"

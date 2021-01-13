@@ -1,8 +1,4 @@
----
-### No longer maintained.
----
-
-# Fi GridFS
+# Tl GridFS
 Convenience layer for Mongo's GridFS on Node.js applications
 
 This module uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/gridfs-stream) module to stream data into GridFS.
@@ -10,12 +6,12 @@ This module uses Aaron Heckmann's [gridfs-stream](https://github.com/aheckmann/g
 ## Installing
 
 ```sh
-npm install --save fi-gridfs
+npm install --save tl-gridfs
 ```
 
 ## Usage
 ```js
-var gridfs = require('fi-gridfs');
+var gridfs = require('tl-gridfs');
 ```
 
 ### Initialization

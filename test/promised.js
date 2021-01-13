@@ -33,9 +33,9 @@ function rint(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-describe('FiGrid (Promised)', function () {
+describe('TlGridFs (Promised)', function () {
   before(function (done) {
-    var url = 'mongodb://localhost:27017/fi-grid-tests';
+    var url = 'mongodb://localhost:27017/tl-grid-tests';
 
     MongoClient.connect(url, (err, db) => {
       if (err) {
