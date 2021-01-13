@@ -5,7 +5,9 @@
   "description": "Convenience layer for Mongo's GridFS on Node.js applications",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter list test/*.js"
+    "test": "./node_modules/mocha/bin/mocha --reporter list test/*.js",
+    "postversion": "git push --follow-tags",
+    "preversion": "npm run test"
   },
   "repository": {
     "type": "git",
